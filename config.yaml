@@ -1,0 +1,72 @@
+trainer:
+  gpus: 1
+  limit_train_batches: .1
+  
+model:
+  class_path: entity_typing_framework.main_module.main_module.MainModule
+  init_args:
+    dataset_manager:
+      class_path: entity_typing_framework.dataset_classes.dataset_managers.DatasetManager
+      init_args:
+        dataset_paths:
+          class_path: entity_typing_framework.dataset_classes.datasets.BaseDataset
+          init_args:    
+            # train: datasets/toy_datasets/toy_bbn_train.json
+            # dev: datasets/toy_datasets/toy_bbn_dev.json
+            # test: datasets/toy_datasets/toy_bbn_test.json
+            train: datasets/ren_et_al/bbn/train.json
+            dev: datasets/ren_et_al/bbn/dev.json
+            test: datasets/ren_et_al/bbn/test-12k.json
+        tokenizer_params:
+          class_path: entity_typing_framework.dataset_classes.tokenized_datasets.BaseBERTTokenizedDataset
+          init_args:    
+            bertlike_model_name: distilbert-base-uncased
+            max_mention_words: 1
+            max_right_words: 2
+            max_left_words: 2
+        dataloader_params:
+          train:
+            class_path: torch.utils.data.dataloader.DataLoader
+            init_args:
+              batch_size: 64
+              shuffle: True
+          dev:
+            class_path: torch.utils.data.dataloader.DataLoader
+            init_args:
+              batch_size: 8
+          test:
+            class_path: torch.utils.data.dataloader.DataLoader
+            init_args:
+              batch_size: 8
+    ET_Network_params:
+      class_path: entity_typing_framework.EntityTypingNetwork_classes.base_network.BaseEntityTypingNetwork
+      init_args:
+        network_params:
+          encoder_params:
+            class_path: entity_typing_framework.EntityTypingNetwork_classes.input_encoders.DistilBERTEncoder
+            init_args:
+              bertlike_model_name: distilbert-base-uncased
+              freeze_encoder : True
+          type_encoder_params:
+            class_path: entity_typing_framework.EntityTypingNetwork_classes.type_encoders.OneHotTypeEncoder
+            init_args:
+              trainable: False
+          input_projector_params:
+            class_path: entity_typing_framework.EntityTypingNetwork_classes.input_projectors.Classifier
+            init_args:
+              '0':
+                in_features : encoder_dim
+                out_features: 512
+                use_dropout: True
+              '1':
+                in_features: 512
+                out_features : type_number
+                use_dropout: False
+                activation: sigmoid
+    loss:
+      class_path: entity_typing_framework.main_module.losses.BCELossForET
+    logger_params:
+      class_path : entity_typing_framework.main_module.custom_logger.CustomLogger
+      init_args : 
+        project : entity_typing_framework
+        entity : noonebug
