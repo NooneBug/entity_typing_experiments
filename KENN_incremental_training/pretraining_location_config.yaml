@@ -14,10 +14,7 @@ model:
         name : OneHotTypeEncoder
         trainable: False
       input_projector_params:
-        # name : KENNClassifier
         name : Classifier
-        # clause_file_path : entity_typing_experiments/kenn_experiments/clause_files/top_down_clause.txt #has to be equal to data.dataset_reader_params.clause_output_path in trainer.py
-        # save_training_data : False
         layers_parameters: 
           '0':
             in_features : encoder_dim
@@ -31,15 +28,14 @@ model:
             activation: sigmoid
 
 trainer:
-  # resume_from_checkpoint: trained_models/epoch=14-step=1979.ckpt
   gpus: 1
-  limit_train_batches: .2
-  max_epochs : 30
+  limit_train_batches: .1
+  max_epochs : 100
   callbacks:
-    # - class_path: pytorch_lightning.callbacks.ModelCheckpoint
-    #   init_args:
-    #     dirpath: trained_models/
-    #     monitor: val_loss
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        dirpath: trained_models/pretraining/
+        monitor: val_loss
     - class_path: pytorch_lightning.callbacks.EarlyStopping
       init_args:
         patience: 5
@@ -49,29 +45,23 @@ trainer:
 
 data:
   dataset_paths:
-    train: datasets/ren_et_al/bbn/train.json
-    dev: datasets/ren_et_al/bbn/dev.json
-    test: datasets/ren_et_al/bbn/test-12k.json
+    train: datasets/datasets_for_incremental_training/figer/pretraining_location.json
+    dev: datasets/datasets_for_incremental_training/figer/pretraining_location_dev.json
+    test: datasets/datasets_for_incremental_training/figer/pretraining_location_test.json
   dataset_reader_params:
     name : BaseDataset
-    # name : DatasetWithKENN
-    # types_file_path : datasets/ren_et_al/bbn/all_types.txt
-    # clause_output_path : entity_typing_experiments/kenn_experiments/clause_files/top_down_clause.txt
-    # learnable_clause_weight : True
-    # clause_weight : 0.5
-    # kb_mode : top_down
   tokenizer_params:
     name : BaseBERTTokenizedDataset
     bertlike_model_name: distilbert-base-uncased
     max_mention_words: 1
-    max_right_words: 2
-    max_left_words: 2
+    max_right_words: 1
+    max_left_words: 1
   dataset_params:
     name: ET_Dataset
   dataloader_params:
     name: torch.DataLoader
     train:
-      batch_size: 64
+      batch_size: 16
       shuffle: True
     dev:
       batch_size: 8
@@ -81,4 +71,4 @@ data:
 logger:
   project : entity_typing_framework_prove
   entity : noonebug
-  name : noKenn20p
+  name : pretraining_figer_location

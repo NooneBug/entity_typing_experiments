@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "trainer.py", line 16, in <module>
+    cli = MyLightningCLI(MainModule, DatasetManager)
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/pytorch_lightning/utilities/cli.py", line 516, in __init__
+    self.instantiate_classes()
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/pytorch_lightning/utilities/cli.py", line 653, in instantiate_classes
+    self.config_init = self.parser.instantiate_classes(self.config)
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/jsonargparse/deprecated.py", line 127, in patched_instantiate_classes
+    cfg = self._unpatched_instantiate_classes(cfg, **kwargs)
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/jsonargparse/core.py", line 1067, in instantiate_classes
+    cfg[subcommand] = subparser.instantiate_classes(cfg[subcommand], instantiate_groups=instantiate_groups)
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/jsonargparse/deprecated.py", line 127, in patched_instantiate_classes
+    cfg = self._unpatched_instantiate_classes(cfg, **kwargs)
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/jsonargparse/core.py", line 1062, in instantiate_classes
+    component.instantiate_class(component, cfg)
+  File "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/lib/python3.8/site-packages/jsonargparse/signatures.py", line 555, in group_instantiate_class
+    parent[key] = group.group_class(**value)
+  File "/home/vime/Desktop/entity_typing/entity_typing_framework/entity_typing_framework/dataset_classes/dataset_managers.py", line 53, in __init__
+    self.read_datasets()
+  File "/home/vime/Desktop/entity_typing/entity_typing_framework/entity_typing_framework/dataset_classes/dataset_managers.py", line 62, in read_datasets
+    self.datasets = IMPLEMENTED_CLASSES_LVL0[self.dataset_reader_params['name']](dataset_paths = self.dataset_paths)
+  File "/home/vime/Desktop/entity_typing/entity_typing_framework/entity_typing_framework/dataset_classes/datasets.py", line 21, in __init__
+    self.read_dataset_partitions()
+  File "/home/vime/Desktop/entity_typing/entity_typing_framework/entity_typing_framework/dataset_classes/datasets.py", line 30, in read_dataset_partitions
+    partitions[partition_name] = DatasetPartition(partition_path=partition_path)
+  File "/home/vime/Desktop/entity_typing/entity_typing_framework/entity_typing_framework/dataset_classes/datasets.py", line 46, in __init__
+    self.acquire_data()
+  File "/home/vime/Desktop/entity_typing/entity_typing_framework/entity_typing_framework/dataset_classes/datasets.py", line 69, in acquire_data
+    with open(self.path, 'r') as inp:
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/ren_et_al/bbn/train.json'

@@ -2,7 +2,8 @@ seed_everything : 1
 
 model:
   loss_params:
-    name : BCELossForET
+    name : KENNBCEMultiloss
+    alpha : .5
   ET_Network_params:
     name : BaseEntityTypingNetwork
     network_params:
@@ -14,10 +15,12 @@ model:
         name : OneHotTypeEncoder
         trainable: False
       input_projector_params:
-        # name : KENNClassifier
-        name : Classifier
-        # clause_file_path : entity_typing_experiments/kenn_experiments/clause_files/top_down_clause.txt #has to be equal to data.dataset_reader_params.clause_output_path in trainer.py
-        # save_training_data : False
+        # name : Classifier
+        name : KENNClassifierMultiloss
+        clause_file_path : entity_typing_experiments/kenn_experiments/clause_files/custom_top_down_clause.txt # if u want to generate AND use a clause file, 
+                                                                                                              # this has to be equal to
+                                                                                                              # data.dataset_reader_params.clause_output_path 
+        save_training_data : False
         layers_parameters: 
           '0':
             in_features : encoder_dim
@@ -53,13 +56,13 @@ data:
     dev: datasets/ren_et_al/bbn/dev.json
     test: datasets/ren_et_al/bbn/test-12k.json
   dataset_reader_params:
-    name : BaseDataset
-    # name : DatasetWithKENN
-    # types_file_path : datasets/ren_et_al/bbn/all_types.txt
+    # name : BaseDataset
+    name : DatasetWithKENN
+    types_file_path : datasets/ren_et_al/bbn/all_types.txt
     # clause_output_path : entity_typing_experiments/kenn_experiments/clause_files/top_down_clause.txt
-    # learnable_clause_weight : True
-    # clause_weight : 0.5
-    # kb_mode : top_down
+    learnable_clause_weight : True
+    clause_weight : 0.5
+    kb_mode : top_down
   tokenizer_params:
     name : BaseBERTTokenizedDataset
     bertlike_model_name: distilbert-base-uncased
@@ -81,4 +84,4 @@ data:
 logger:
   project : entity_typing_framework_prove
   entity : noonebug
-  name : noKenn20p
+  name : Kenn20p

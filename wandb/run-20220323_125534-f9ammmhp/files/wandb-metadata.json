@@ -1,0 +1,28 @@
+{
+    "os": "Linux-5.14.0-1027-oem-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-03-23T11:55:35.754985",
+    "startedAt": "2022-03-23T11:55:34.926262",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "fit",
+        "--config",
+        "flat_config.yaml"
+    ],
+    "state": "running",
+    "program": "trainer.py",
+    "codePath": "trainer.py",
+    "git": {
+        "remote": "https://github.com/NooneBug/entity_typing_experiments.git",
+        "commit": "7711612528c0bb6d2e66a746870226b0c01e0aa8"
+    },
+    "email": "manuel.vimercati@gmail.com",
+    "root": "/home/vime/Desktop/entity_typing/entity_typing_experiments",
+    "host": "vime-Dell-G15-5510",
+    "username": "vime",
+    "executable": "/home/vime/Desktop/entity_typing/entity_typing_experiments/experiments_venv/bin/python"
+}
