@@ -13,7 +13,4 @@ class MyLightningCLI(LightningCLI):
         parser.link_arguments("data.type_number", "model.type_number", apply_on="instantiate")
         parser.link_arguments("logger", "model.logger", apply_on="instantiate", compute_fn = dummy_compute_fn)
 
-
-
 cli = MyLightningCLI(MainModule, DatasetManager)
-# cli = MyLightningCLI(KENNMainModule, DatasetManager)

@@ -1,10 +1,12 @@
 seed_everything : 1
 
 model:
+  # new_type_number: 1
+  checkpoint_to_load: trained_models/pretraining/pretraining_location.ckpt
   loss_params:
     name : BCELossForET
   ET_Network_params:
-    name : BaseEntityTypingNetwork
+    name : EntityTypingNetworkForIncrementalTraining
     network_params:
       encoder_params:
         name : DistilBERTEncoder
@@ -28,27 +30,31 @@ model:
             activation: sigmoid
 
 trainer:
+  deterministic: True
   gpus: 1
-  limit_train_batches: .1
-  max_epochs : 100
+  limit_train_batches: 10
+  max_epochs : 10
   callbacks:
     - class_path: pytorch_lightning.callbacks.ModelCheckpoint
       init_args:
         dirpath: trained_models/incremental/
-        monitor: val_loss
+        monitor: losses/val_loss
+        filename: incremental_locationcity
     - class_path: pytorch_lightning.callbacks.EarlyStopping
       init_args:
         patience: 5
-        monitor: val_loss
+        monitor: losses/val_loss
         mode: min
         verbose: True
 
 data:
   dataset_paths:
     pretraining_train: datasets/datasets_for_incremental_training/figer/pretraining_location.json
+    # pretraining_train: datasets/datasets_for_incremental_training/figer/pretraining_location_dev.json
     pretraining_dev: datasets/datasets_for_incremental_training/figer/pretraining_location_dev.json
     pretraining_test: datasets/datasets_for_incremental_training/figer/pretraining_location_test.json
     incremental_train: datasets/datasets_for_incremental_training/figer/incremental_locationcity.json
+    # incremental_train: datasets/datasets_for_incremental_training/figer/incremental_locationcity_dev.json
     incremental_dev: datasets/datasets_for_incremental_training/figer/incremental_locationcity_dev.json
     incremental_test: datasets/datasets_for_incremental_training/figer/incremental_locationcity_test.json
   dataset_reader_params:
@@ -63,13 +69,20 @@ data:
     name: ET_Dataset
   dataloader_params:
     name: torch.DataLoader
-    train:
-      batch_size: 16
+    pretraining_train:
+      batch_size: 512
       shuffle: True
-    dev:
-      batch_size: 8
-    test:
-      batch_size: 8
+    pretraining_dev:
+      batch_size: 512
+    pretraining_test:
+      batch_size: 512
+    incremental_train:
+      batch_size: 512
+    incremental_dev:
+      batch_size: 512
+    incremental_test:
+      batch_size: 512
+    
 
 logger:
   project : entity_typing_framework_prove
