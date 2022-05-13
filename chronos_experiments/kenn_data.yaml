@@ -1,0 +1,36 @@
+data:
+  dataset_paths:
+    train: datasets/bbn/train.json
+    dev: datasets/bbn/dev.json
+    test: datasets/bbn/test-12k.json
+  # train_test_mapping:
+  #   livingthing: living_thing
+  dataset_reader_params:
+    name : KENNDataset
+    types_file_path: datasets/bbn/all_types.txt
+    clause_output_path: kb_bbn/top_down
+    learnable_clause_weight: True
+    clause_weight: 1.0
+    kb_mode: top_down
+  tokenizer_params:
+    name : BaseBERTTokenizedDataset
+    bertlike_model_name: distilbert-base-uncased
+    max_mention_words: 5
+    max_right_words: 13
+    max_left_words: 13
+    max_tokens: 80
+  dataset_params:
+    name: ET_Dataset
+  dataloader_params:
+    name: torch.DataLoader
+    train:
+      batch_size: 64
+      shuffle: True
+    dev:
+      batch_size: 64
+    test:
+      batch_size: 64
+  rw_options:
+    modality: Load # in [Create, CreateAndSave, Load]
+    dirpath: datasets/bbn/tokenized 
+    light: True

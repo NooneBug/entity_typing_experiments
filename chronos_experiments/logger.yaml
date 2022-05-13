@@ -1,0 +1,5 @@
+logger:
+  project : cancellami
+  entity : cbe
+  name : run_name
+  config_file: undefined

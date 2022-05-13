@@ -15,7 +15,9 @@ class MyLightningCLI(LightningCLI):
 
 
 
-cli = MyLightningCLI(MainModule, DatasetManager, save_config_overwrite=True)
+cli = MyLightningCLI(KENNMultilossMainModule, DatasetManager, save_config_overwrite=True)
+cli.trainer.logger_module()
+print(cli.config)
 # load best model
 cli.trainer.model.load_from_checkpoint(cli.trainer.model.ET_Network_params, checkpoint_to_load=cli.trainer.checkpoint_callback.best_model_path)
 # test step
