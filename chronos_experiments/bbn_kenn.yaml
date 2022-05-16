@@ -96,4 +96,4 @@ logger:
   project : tmp
   entity : cbe
   name : bbn_top_down
-  config_file: entity_typing_experiments/chronos_experiments/bbn_kenn.yaml
+  config_file: auto
