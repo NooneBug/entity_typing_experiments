@@ -37,7 +37,7 @@ trainer:
       init_args:
         dirpath: trained_models/pretraining/
         monitor: val_loss
-        filename: pretraining_location
+        filename: pretraining_location_official
         save_weights_only: True
     - class_path: pytorch_lightning.callbacks.EarlyStopping
       init_args:
@@ -56,9 +56,9 @@ data:
   tokenizer_params:
     name : BaseBERTTokenizedDataset
     bertlike_model_name: distilbert-base-uncased
-    max_mention_words: 1
-    max_right_words: 1
-    max_left_words: 1
+    max_mention_words: 19
+    max_right_words: 19
+    max_left_words: 6
   dataset_params:
     name: ET_Dataset
   dataloader_params:
@@ -72,6 +72,7 @@ data:
       batch_size: 64
 
 logger:
-  project : entity_typing_framework_prove
+  project : entity_typing_framework
   entity : noonebug
   name : pretraining_figer_location
+  config_file : entity_typing_experiments/KENN_incremental_training/pretraining_location_config.yaml

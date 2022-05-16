@@ -33,13 +33,13 @@ trainer:
   deterministic: True
   gpus: 1
   limit_train_batches: 10
-  max_epochs : 10
+  max_epochs : 100
   callbacks:
     - class_path: pytorch_lightning.callbacks.ModelCheckpoint
       init_args:
         dirpath: trained_models/incremental/
         monitor: losses/val_loss
-        filename: incremental_locationcity
+        filename: incremental_locationcity_official
     - class_path: pytorch_lightning.callbacks.EarlyStopping
       init_args:
         patience: 5
@@ -70,21 +70,23 @@ data:
   dataloader_params:
     name: torch.DataLoader
     pretraining_train:
-      batch_size: 512
+      batch_size: 64
       shuffle: True
     pretraining_dev:
-      batch_size: 512
+      batch_size: 64
     pretraining_test:
-      batch_size: 512
+      batch_size: 64
     incremental_train:
-      batch_size: 512
+      batch_size: 64
+      shuffle: True
     incremental_dev:
-      batch_size: 512
+      batch_size: 64
     incremental_test:
-      batch_size: 512
+      batch_size: 64
     
 
 logger:
-  project : entity_typing_framework_prove
+  project : entity_typing_framework
   entity : noonebug
   name : incremental_figer_location_city
+  config_file : entity_typing_experiments/KENN_incremental_training/incremental_location_city_config.yaml
