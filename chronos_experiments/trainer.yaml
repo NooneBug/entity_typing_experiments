@@ -1,0 +1,18 @@
+trainer:
+  deterministic: True
+  gpus: 1
+  limit_train_batches: 160
+  max_epochs : 100
+  callbacks:
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        dirpath: trained_models_chronos_exp/bbn/
+        monitor: val_loss
+        filename: qweqwe
+        save_weights_only: True
+    - class_path: pytorch_lightning.callbacks.EarlyStopping
+      init_args:
+        patience: 5
+        monitor: val_loss
+        mode: min
+        verbose: True
