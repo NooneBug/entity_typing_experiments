@@ -1,17 +1,12 @@
 data:
   dataset_paths:
-    train: datasets/bbn/train.json
-    dev: datasets/bbn/dev.json
-    test: datasets/bbn/test-12k.json
+    train: ../datasets/ren_et_al/bbn/train.json
+    dev: ../datasets/ren_et_al/bbn/dev.json
+    test: ../datasets/ren_et_al/bbn/test-12k.json
   # train_test_mapping:
   #   livingthing: living_thing
   dataset_reader_params:
-    name : KENNDataset
-    types_file_path: datasets/bbn/all_types.txt
-    clause_output_path: kb_bbn/top_down
-    learnable_clause_weight: True
-    clause_weight: 1.0
-    kb_mode: top_down
+    name : BaseDataset
   tokenizer_params:
     name : BaseBERTTokenizedDataset
     bertlike_model_name: distilbert-base-uncased
@@ -31,6 +26,7 @@ data:
     test:
       batch_size: 64
   rw_options:
-    modality: Load # in [Create, CreateAndSave, Load]
-    dirpath: datasets/bbn/tokenized 
+    modality: CreateAndSave # in [Create, CreateAndSave, Load]
+    dirpath: ../tokenized_datasets/bbn/dummy_tokenized 
     light: True
+    type2id_file_path: ../datasets/datasets_for_incremental_training/figer/figer_all_types_no_location_sons.txt

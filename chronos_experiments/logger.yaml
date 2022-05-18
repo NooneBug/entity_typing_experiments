@@ -1,5 +1,5 @@
 logger:
   project : cancellami
-  entity : cbe
+  entity : NooneBug
   name : run_name
   config_file: auto

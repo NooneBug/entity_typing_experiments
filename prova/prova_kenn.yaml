@@ -19,7 +19,6 @@ model:
         # name : KENNClassifier
         name : KENNClassifierMultiloss
         clause_file_path: kb_prova/prova
-        save_training_data: False
         layers_parameters: 
           '0':
             in_features : encoder_dim
@@ -62,12 +61,7 @@ data:
   # train_test_mapping:
   #   livingthing: living_thing
   dataset_reader_params:
-    name : KENNDataset
-    types_file_path: datasets/bbn/all_types.txt
-    clause_output_path: kb_prova/prova
-    learnable_clause_weight: True
-    clause_weight: 1.0
-    kb_mode: top_down
+    name : BaseDataset
   tokenizer_params:
     name : BaseBERTTokenizedDataset
     bertlike_model_name: distilbert-base-uncased

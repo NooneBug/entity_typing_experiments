@@ -17,7 +17,6 @@ model:
       input_projector_params:
         name : KENNClassifier
         clause_file_path: kb_prova/prova
-        save_training_data: False
         layers_parameters: 
           '0':
             in_features : encoder_dim

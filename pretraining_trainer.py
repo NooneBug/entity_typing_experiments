@@ -11,6 +11,7 @@ class MyLightningCLI(LightningCLI):
         parser.add_lightning_class_args(CustomLogger, "logger")
 
         parser.link_arguments("data.type_number", "model.type_number", apply_on="instantiate")
+        parser.link_arguments("data.type2id", "model.type2id", apply_on="instantiate")
         parser.link_arguments("logger", "model.logger", apply_on="instantiate", compute_fn = dummy_compute_fn)
-
+        
 cli = MyLightningCLI(MainModule, DatasetManager)
