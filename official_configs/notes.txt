@@ -70,7 +70,7 @@ SBATTIMENTI:
 
 _____________________
 
-IDEA: forse la cosa più indolore è raggruppare gli yaml e lanciare script che li combina...
+IDEA 1: forse la cosa più indolore è raggruppare gli yaml e lanciare script che li combina...
 Requisiti:
 	- i nomi devono seguire un pattern
 	- script che gestisce nomi checkpoint, run wandb e project
@@ -94,3 +94,10 @@ def get_encoder(yaml_name):
 		...
 def get_kb_mode(yaml_name):
 	...
+
+
+IDEA 2: facciamo a mano... prepariamo un excel con le combinazioni di yaml che ci interessano e segnamo bene cosa si lancia
+
+_____________________
+
+PROBLEMA CHE RIMANE: capire questione nomi (wandb, modelli locali, ecc)
