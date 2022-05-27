@@ -1,0 +1,4 @@
+project : TBD # provided as argument? how will we split the runs? dataset_[pretraining, incremental]?
+entity : insides_et
+name : TBD # provided as argument? dinamically generated (how?)?
+config_file: auto

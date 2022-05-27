@@ -1,0 +1,13 @@
+dataset_paths:
+  pretraining_train: ../datasets/datasets_for_incremental_training/figer/incremental/pretraining_train.json
+  pretraining_dev: ../datasets/datasets_for_incremental_training/figer/incremental/pretraining_dev.json
+  pretraining_test: ../datasets/datasets_for_incremental_training/figer/incremental/pretraining_test.json
+  incremental_train: ../datasets/datasets_for_incremental_training/figer/incremental/incremental_train_TBD.json
+  incremental_dev: ../datasets/datasets_for_incremental_training/figer/incremental/incremental_dev_TBD.json
+  incremental_test: ../datasets/datasets_for_incremental_training/figer/incremental/incremental_test_TBD.json
+# tokenizer_params: # inherited from data_pretrain.yaml
+rw_options:
+  modality: CreateAndSave # in [Create, CreateAndSave, Load]
+  dirpath: ../tokenized_datasets/figer/incremental
+  light: True
+  # types_list_path: TBD

@@ -1,0 +1,96 @@
+
+TEMPLATE BASE:
+	- data.yaml
+		-> dataset_paths: TBD
+		-> dataset_reader_params: COMMON
+		-> tokenizer_params: COMMON
+		-> dataset_params: COMMON
+		-> dataloader_params: TBD
+		-> rw_options: TBD
+	
+	- model.yaml
+		-> smart_save: COMMON
+		-> loss_params: TBD
+		-> ET_Network_params: TBD
+		-> inference_params: COMMON
+		-> checkpoint_to_load: TBD
+		
+	- trainer.yaml (come --config per mettere qui il seed)
+		-> seed_everything: COMMON
+		-> deterministic: COMMON
+		-> gpus: COMMON
+		-> limit_train_batches: COMMON
+		-> max_epochs: COMMON
+		-> callbacks: TBD (path ckpt li mettiamo a mano?)
+		
+	- logger.yaml
+		-> project: TBD
+		-> entity: COMMON
+		-> name: TBD
+		-> config_file: COMMON
+	
+TEMPLATE PRETRAINING:
+	- data_pretraining.yaml
+		-> dataset_paths
+		-> dataloader_params
+		-> rw_options
+		
+	- model_pretraining.yaml
+		-> loss_params
+		-> ET_Network_params
+		-> checkpoint_to_load
+		
+	- trainer_pretraining.yaml
+		-> callbacks
+	
+TEMPLATE INCREMENTAL: ricordarsi di cambiare dirpath per dataset tokenizzati, modelli & co
+	- data_incremental.yaml
+		-> dataset_paths
+		-> dataloader_params
+		-> rw_options
+		
+	- model_incremental.yaml
+		-> loss_params
+		-> ET_Network_params
+		-> checkpoint_to_load
+		
+	- trainer_incremental.yaml
+		-> callbacks
+	
+_____________________
+
+SBATTIMENTI:
+- tantissima ridondanza in ET_Network_params
+	-> pesante avere file duplicati per:
+		- cambiare parametri KENN
+		- cambiare parametri encoder
+- nomi con cui salvare i checkpoint
+- gestione logger
+- copie di file per ogni dataset per ogni encoder
+
+_____________________
+
+IDEA: forse la cosa più indolore è raggruppare gli yaml e lanciare script che li combina...
+Requisiti:
+	- i nomi devono seguire un pattern
+	- script che gestisce nomi checkpoint, run wandb e project
+
+- esempio chronos_experiments
+
+# DATA = [data.yaml] # 6 yaml (3 dataset * 2 encoder)
+DATA = [data.yaml] # 2 yaml (2 encoder)
+MODEL = [model.yaml] # 8 yaml (4 kb_mode * 2 encoder)
+WANDB_PROJ = 'figer_multiloss_experiment' # da usare anche come main dir per ckpt
+for d in DATA:
+	for m in MODEL:
+		# logger: set run_name
+		# trainer: set checkpoint name -> va ridefinito in ogni parametro
+		# build cli command
+		
+
+# utils per costruire run_name e nome checkpoint
+def get_encoder(yaml_name):
+	if 'distilbert' in yaml_name:
+		...
+def get_kb_mode(yaml_name):
+	...

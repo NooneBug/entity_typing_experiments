@@ -1,0 +1,30 @@
+dataset_paths:
+  pretraining_train: TBD
+  pretraining_dev: TBD
+  pretraining_test: TBD
+  incremental_train: TBD
+  incremental_dev: TBD
+  incremental_test: TBD
+# dataset_reader_params: # inherited from data_pretrain.yaml
+# tokenizer_params: # inherited from data_pretrain.yaml
+dataloader_params:
+    name: torch.DataLoader
+    pretraining_train:
+      batch_size: 64
+      shuffle: True
+    pretraining_dev:
+      batch_size: 64
+    pretraining_test:
+      batch_size: 64
+    incremental_train:
+      batch_size: 64
+      shuffle: True
+    incremental_dev:
+      batch_size: 64
+    incremental_test:
+      batch_size: 64
+rw_options:
+  modality: CreateAndSave # in [Create, CreateAndSave, Load]
+  dirpath: ../tokenized_datasets/TBD
+  light: True
+  # types_list_path: TBD

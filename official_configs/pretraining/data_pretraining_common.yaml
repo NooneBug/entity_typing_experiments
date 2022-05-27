@@ -1,0 +1,13 @@
+dataset_reader_params:
+  name : BaseDataset
+dataset_params:
+  name: ET_Dataset
+dataloader_params:
+  name: torch.DataLoader
+  train:
+    batch_size: 64
+    shuffle: True
+  dev:
+    batch_size: 64
+  test:
+    batch_size: 64

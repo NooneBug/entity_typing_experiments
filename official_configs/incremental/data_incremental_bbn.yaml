@@ -1,0 +1,13 @@
+dataset_paths:
+  pretraining_train: ../datasets/datasets_for_incremental_training/bbn/incremental/pretraining_train.json
+  pretraining_dev: ../datasets/datasets_for_incremental_training/bbn/incremental/pretraining_dev.json
+  pretraining_test: ../datasets/datasets_for_incremental_training/bbn/incremental/pretraining_test-12k.json
+  incremental_train: ../datasets/datasets_for_incremental_training/bbn/incremental/incremental_train_TBD.json
+  incremental_dev: ../datasets/datasets_for_incremental_training/bbn/incremental/incremental_dev_TBD.json
+  incremental_test: ../datasets/datasets_for_incremental_training/bbn/incremental/incremental_test-12k_TBD.json
+# tokenizer_params: # inherited from data_pretrain.yaml
+rw_options:
+  modality: CreateAndSave # in [Create, CreateAndSave, Load]
+  dirpath: ../tokenized_datasets/bbn/incremental
+  light: True
+  # types_list_path: TBD

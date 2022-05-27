@@ -1,0 +1,24 @@
+# IMPORTANT: provide this file to lighyning cli as --config argument
+seed_everything: 1
+trainer:
+  deterministic: True
+  gpus: 1
+  limit_train_batches: 160
+  max_epochs : 100
+  callbacks:
+    # ModelCheckpoint callback need to be dinamically redefined to modify the ckpt location
+    # alternative: prepare a custom trainer_pretraining.yaml per dataset with hardcoded dirpath and filename
+    # consequence: prepare a custom model_incremental.yaml per dataset with hardcoded checkpoint_to_load
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        dirpath: TBD
+        filename: TBD
+        monitor: val_loss
+        save_weights_only: True
+    - class_path: pytorch_lightning.callbacks.EarlyStopping
+      init_args:
+        patience: 5
+        monitor: val_loss
+        mode: min
+        verbose: True
+

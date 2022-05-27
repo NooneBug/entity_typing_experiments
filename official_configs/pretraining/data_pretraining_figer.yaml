@@ -1,0 +1,16 @@
+dataset_paths:
+  train: ../datasets/datasets_for_incremental_training/figer/pretraining/train.json
+  dev: ../datasets/datasets_for_incremental_training/figer/pretraining/dev.json
+  test: ../datasets/datasets_for_incremental_training/figer/pretraining/test.json
+tokenizer_params:
+  name : BaseBERTTokenizedDataset
+  bertlike_model_name: bert-large-cased
+  max_mention_words: 6
+  max_right_words: 19
+  max_left_words: 19
+  max_tokens: 80
+rw_options:
+  modality: CreateAndSave # in [Create, CreateAndSave, Load]
+  dirpath: ../tokenized_datasets/figer/pretraining
+  light: True
+  # types_list_path: TBD

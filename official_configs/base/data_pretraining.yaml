@@ -1,0 +1,29 @@
+dataset_paths:
+  train: TBD
+  dev: TBD
+  test: TBD
+dataset_reader_params:
+  name : BaseDataset
+tokenizer_params:
+  name : BaseBERTTokenizedDataset
+  bertlike_model_name: bert-large-cased
+  max_mention_words: TBD
+  max_right_words: TBD
+  max_left_words: TBD
+  max_tokens: 80
+dataset_params:
+  name: ET_Dataset
+dataloader_params:
+  name: torch.DataLoader
+  train:
+    batch_size: 64
+    shuffle: True
+  dev:
+    batch_size: 64
+  test:
+    batch_size: 64
+rw_options:
+  modality: CreateAndSave # in [Create, CreateAndSave, Load]
+  dirpath: ../tokenized_datasets/TBD
+  light: True
+  # types_list_path: ../tokenized_datasets/TBD/TBD

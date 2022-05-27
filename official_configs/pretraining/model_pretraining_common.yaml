@@ -1,0 +1,4 @@
+smart_save: True
+inference_params: # usiamo anche per box o no(e)?
+    name: BaseInference
+    threshold: 0.5

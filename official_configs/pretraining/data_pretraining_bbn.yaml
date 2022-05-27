@@ -1,0 +1,16 @@
+dataset_paths:
+  train: ../datasets/datasets_for_incremental_training/bbn/pretraining/train.json
+  dev: ../datasets/datasets_for_incremental_training/bbn/pretraining/dev.json
+  test: ../datasets/datasets_for_incremental_training/bbn/pretraining/test-12k.json
+tokenizer_params:
+  name : BaseBERTTokenizedDataset
+  bertlike_model_name: bert-large-cased
+  max_mention_words: 5
+  max_right_words: 13
+  max_left_words: 13
+  max_tokens: 80
+rw_options:
+  modality: CreateAndSave # in [Create, CreateAndSave, Load]
+  dirpath: ../tokenized_datasets/bbn/pretraining
+  light: True
+  # types_list_path: TBD
