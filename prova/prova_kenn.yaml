@@ -16,8 +16,7 @@ model:
         name : OneHotTypeEncoder
         trainable: False
       input_projector_params:
-        # name : KENNClassifier
-        name : KENNClassifierMultiloss
+        name : KENNClassifier
         clause_file_path: kb_prova/prova
         layers_parameters: 
           '0':

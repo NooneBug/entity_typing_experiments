@@ -15,4 +15,4 @@ rw_options:
   modality: Load # in [Create, CreateAndSave, Load]
   dirpath: ../tokenized_datasets/default_save_dir/ 
   light: True
-  types_list_save_path: ../tokenized_datasets/default_save_dir/types_list.txt
+  types_list_path: ../tokenized_datasets/default_save_dir/types_list.txt

@@ -15,7 +15,8 @@ class MyLightningCLI(LightningCLI):
         parser.link_arguments("logger", "model.logger", apply_on="instantiate", compute_fn = dummy_compute_fn)
 
 
-cli = MyLightningCLI(MainModule, DatasetManager, save_config_overwrite=True)
+
+cli = MyLightningCLI(BoxEmbeddingMainModule, DatasetManager, save_config_overwrite=True)
 # load best model
 cli.trainer.model.ET_Network = cli.trainer.model.load_ET_Network(checkpoint_to_load=cli.trainer.checkpoint_callback.best_model_path, ET_Network_params = cli.trainer.model.ET_Network_params)
 # test step

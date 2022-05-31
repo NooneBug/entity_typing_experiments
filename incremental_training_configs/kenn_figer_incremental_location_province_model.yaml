@@ -1,4 +1,10 @@
+smart_save: True
+checkpoint_to_load : trained_models_incremental_exp/figer/dummy_pretraining_location.ckpt
+loss_params:
+  name : KENNBCEMultiloss
+  alpha : .5
 ET_Network_params:
+  # name : EntityTypingNetworkForIncrementalTraining
   name : BaseEntityTypingNetwork
   network_params:
     encoder_params:
@@ -10,7 +16,7 @@ ET_Network_params:
       name : OneHotTypeEncoder
       trainable: False
     input_projector_params:
-      name : KENNClassifier
+      name : KENNClassifierForIncrementalTraining
       # name : KENNClassifierMultiloss
       # clause_file_path: kb/bbn/pretraining_location
       learnable_clause_weight: True

@@ -3,8 +3,6 @@ data:
     train: ../datasets/ren_et_al/bbn/train.json
     dev: ../datasets/ren_et_al/bbn/dev.json
     test: ../datasets/ren_et_al/bbn/test-12k.json
-  # train_test_mapping:
-  #   livingthing: living_thing
   dataset_reader_params:
     name : BaseDataset
   tokenizer_params:

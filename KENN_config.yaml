@@ -15,8 +15,7 @@ model:
         name : OneHotTypeEncoder
         trainable: False
       input_projector_params:
-        # name : Classifier
-        name : KENNClassifierMultiloss
+        name : KENNClassifier
         clause_file_path : entity_typing_experiments/kenn_experiments/clause_files/custom_top_down_clause.txt # if u want to generate AND use a clause file, 
                                                                                                               # this has to be equal to
                                                                                                               # data.dataset_reader_params.clause_output_path 

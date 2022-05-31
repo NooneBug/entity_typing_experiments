@@ -1,3 +1,5 @@
+seed_everything : 3
+
 trainer:
   deterministic: True
   gpus: 1
@@ -6,7 +8,7 @@ trainer:
   callbacks:
     - class_path: pytorch_lightning.callbacks.ModelCheckpoint
       init_args:
-        dirpath: trained_models_chronos_exp/bbn/
+        dirpath: trained_models_chronos_exp/figer/
         monitor: val_loss
         filename: qweqwe
         save_weights_only: True

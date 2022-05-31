@@ -3,12 +3,13 @@ max_epochs : 10
 callbacks:
   - class_path: pytorch_lightning.callbacks.ModelCheckpoint
     init_args:
-      dirpath: trained_models_incremental_exp/bbn/
-      filename: dummy_bbn_pretraining_location
+      dirpath: trained_models_incremental_exp/figer/wewe
+      filename: dummy_incremental_location_province
+      monitor: losses/val_loss
       save_weights_only: True
   - class_path: pytorch_lightning.callbacks.EarlyStopping
     init_args:
       patience: 2
-      monitor: val_loss
+      monitor: losses/val_loss
       mode: min
       verbose: True
