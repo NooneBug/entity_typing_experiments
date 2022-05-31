@@ -1,7 +1,7 @@
 dataset_paths:
-  train: ../datasets/datasets_for_incremental_training/ontonotes/pretraining/train.json
-  dev: ../datasets/datasets_for_incremental_training/ontonotes/pretraining/dev.json
-  test: ../datasets/datasets_for_incremental_training/ontonotes/pretraining/test.json
+  train: /home/remote_hdd/datasets_for_incremental_training/ontonotes/complete_subset_100/pretraining_train.json
+  dev: /home/remote_hdd/datasets_for_incremental_training/ontonotes/complete_subset_100/pretraining_dev.json
+  test: /home/remote_hdd/datasets_for_incremental_training/ontonotes/complete_subset_100/pretraining_test.json
 tokenizer_params:
   name : BaseBERTTokenizedDataset
   bertlike_model_name: bert-large-cased
